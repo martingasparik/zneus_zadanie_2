@@ -10,17 +10,17 @@ Vlastnosti obrázkov:
 Distribúcia tried: Pôvodný dataset bol značne nevyvážený. Najpočetnejšie triedy (pes a pavúk) mali takmer 5000 obrázkov, zatiaľ čo najmenej početné (slon) len okolo 1400.
 ___
 ## Preprocessing
-- Filtrovanie: Boli ponechané iba obrázky s farebným režimom RGB.
-- Vyváženie datasetu: Aby sa eliminovala nevyváženosť tried, bol počet obrázkov pre každú triedu upravený na 2000. Pre triedy s vyšším počtom sa použila metóda undersample (náhodný výber bez opakovania).
+- Filtering: Only images with RGB color mode were retained.
+- Dataset balancing: To eliminate class imbalance, the number of images for each class was adjusted to 2000. For classes with a higher number, the undersample method (random selection without repetition) was used.
 - Split: 0.7/0.15/0.15
 ___
-## Augmentácia a Generátory dát
-- Na načítanie a úpravu obrázkov počas trénovania sa používa ImageDataGenerator 
-- Parametre obrázkov: Všetky obrázky sú počas načítania zmenšené na veľkosť 224, 224px alebo menšie a spracovávané v batch po 32.
-- Tréningový generátor: Aplikuje normalizáciu (hodnoty pixelov 0-1) a rôzne augmentačné techniky na zvýšenie robustnosti modelu:
-  - Rotácia (do 20°)
-  - Horizontálny a vertikálny posun (0.2)
-  - Horizontálne prevrátenie (flip)
-  - Zoom a skosenie (shear)
+## Augmentation and Data Generators
+- ImageDataGenerator is used to load and modify images during training. 
+- Image parameters: All images are reduced to a size of 224 x 224 pixels or smaller during loading and processed in batches of 32.
+- Training generator: Applies normalization (pixel values 0-1) and various augmentation techniques to increase model robustness:
+  - Rotation (up to 20°)
+  - Horizontal and vertical shift (0.2)
+  - Horizontal flip
+  - Zoom and shear (shear)
 
-Validačný a Testovací generátor: Aplikujú iba normalizáciu (rescale=1./255) bez ďalších deformácií obrazu, aby sa zachovala objektívnosť pri vyhodnocovaní.
+Validation and testing generator: Applies only normalization (rescale=1./255) without further image deformation to maintain objectivity in evaluation.
